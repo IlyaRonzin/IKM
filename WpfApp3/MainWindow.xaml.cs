@@ -67,10 +67,10 @@ namespace WpfApp3
                 using (var connection = new NpgsqlConnection("Host=localhost;Database=library;Username=postgres;Password=admin"))
                 {
                     connection.Open();
-                    string query = "INSERT INTO books (bookid, title) VALUES (@bookid, @title)";
+                    string query = "INSERT INTO books (bookid, title) VALUES (@bookId, @title)";
                     using (var command = new NpgsqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@bookid", bookid);
+                        command.Parameters.AddWithValue("@bookId", bookid);
                         command.Parameters.AddWithValue("@title", title);
                         command.ExecuteNonQuery();
                     }
@@ -78,6 +78,7 @@ namespace WpfApp3
 
                 // Обновление данных в DataGrid
                 LoadData();
+                ClearInputFields();
                 MessageBox.Show("Книга успешно добавлена!");
             }
             catch (Exception ex)
@@ -88,9 +89,8 @@ namespace WpfApp3
 
         private void DeleteBookButton_Click(object sender, RoutedEventArgs e)
         {
-            
-            string bookidText = BookTitleTextBox1.Text;
 
+            string bookidText = BookTitleTextBox1.Text;
 
             if (string.IsNullOrWhiteSpace(bookidText))
             {
@@ -110,10 +110,10 @@ namespace WpfApp3
                 using (var connection = new NpgsqlConnection("Host=localhost;Database=library;Username=postgres;Password=admin"))
                 {
                     connection.Open();
-                    string query = "DELETE FROM books WHERE bookid = @bookid";
+                    string query = "DELETE FROM books WHERE bookid = @bookId";
                     using (var command = new NpgsqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@bookid", bookid);
+                        command.Parameters.AddWithValue("@bookId", bookid);
                         int rowsAffected = command.ExecuteNonQuery();
 
                         if (rowsAffected > 0)
@@ -124,6 +124,7 @@ namespace WpfApp3
                         {
                             MessageBox.Show("Книга с указанным ID не найдена.");
                         }
+                        ClearInputFields();
                     }
                 }
 
@@ -157,10 +158,10 @@ namespace WpfApp3
                 using (var connection = new NpgsqlConnection("Host=localhost;Database=library;Username=postgres;Password=admin"))
                 {
                     connection.Open();
-                    string query = "UPDATE books SET title = @newTitle WHERE bookid = @bookid";
+                    string query = "UPDATE books SET title = @newTitle WHERE bookid = @bookId";
                     using (var command = new NpgsqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@bookid", bookid);
+                        command.Parameters.AddWithValue("@bookId", bookid);
                         command.Parameters.AddWithValue("@newTitle", newTitle);
                         int rowsAffected = command.ExecuteNonQuery();
 
@@ -172,6 +173,7 @@ namespace WpfApp3
                         {
                             MessageBox.Show("Книга с указанным ID не найдена.");
                         }
+                        ClearInputFields();
                     }
                 }
 
@@ -206,12 +208,13 @@ namespace WpfApp3
                 using (var connection = new NpgsqlConnection("Host=localhost;Database=library;Username=postgres;Password=admin"))
                 {
                     connection.Open();
-                    string query = "INSERT INTO people (personid, name) VALUES (@personid, @name)";
+                    string query = "INSERT INTO people (personid, name) VALUES (@personId, @name)";
                     using (var command = new NpgsqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@personid", personId);
+                        command.Parameters.AddWithValue("@personId", personId);
                         command.Parameters.AddWithValue("@name", personName);
                         command.ExecuteNonQuery();
+                        ClearInputFields();
                         MessageBox.Show("Человек успешно добавлен!");
                     }
                 }
@@ -245,10 +248,10 @@ namespace WpfApp3
                 using (var connection = new NpgsqlConnection("Host=localhost;Database=library;Username=postgres;Password=admin"))
                 {
                     connection.Open();
-                    string query = "UPDATE people SET name = @name WHERE personid = @personid";
+                    string query = "UPDATE people SET name = @name WHERE personid = @personId";
                     using (var command = new NpgsqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@personid", personId);
+                        command.Parameters.AddWithValue("@personId", personId);
                         command.Parameters.AddWithValue("@name", newPersonName);
                         int rowsAffected = command.ExecuteNonQuery();
 
@@ -260,6 +263,7 @@ namespace WpfApp3
                         {
                             MessageBox.Show("Человек с указанным ID не найден.");
                         }
+                        ClearInputFields();
                     }
                 }
 
@@ -291,10 +295,10 @@ namespace WpfApp3
                 using (var connection = new NpgsqlConnection("Host=localhost;Database=library;Username=postgres;Password=admin"))
                 {
                     connection.Open();
-                    string query = "DELETE FROM people WHERE personid = @personid";
+                    string query = "DELETE FROM people WHERE personid = @personId";
                     using (var command = new NpgsqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@personid", personId);
+                        command.Parameters.AddWithValue("@personId", personId);
                         int rowsAffected = command.ExecuteNonQuery();
 
                         if (rowsAffected > 0)
@@ -305,6 +309,7 @@ namespace WpfApp3
                         {
                             MessageBox.Show("Человек с указанным ID не найден.");
                         }
+                        ClearInputFields();
                     }
                 }
 
@@ -345,15 +350,16 @@ namespace WpfApp3
                 using (var connection = new NpgsqlConnection("Host=localhost;Database=library;Username=postgres;Password=admin"))
                 {
                     connection.Open();
-                    string query = "INSERT INTO tabels (bookid, personid, returndate) VALUES (@bookid, @personid, @returndate)";
+                    string query = "INSERT INTO tabels (bookid, personid, returndate) VALUES (@bookId, @personId, @returnDate)";
                     using (var command = new NpgsqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@bookid", bookId);
-                        command.Parameters.AddWithValue("@personid", personId);
-                        command.Parameters.AddWithValue("@returndate", returnDate);
+                        command.Parameters.AddWithValue("@bookId", bookId);
+                        command.Parameters.AddWithValue("@personId", personId);
+                        command.Parameters.AddWithValue("@returnDate", returnDate);
                         command.ExecuteNonQuery();
                         MessageBox.Show("Запись успешно добавлена!");
                     }
+                    ClearInputFields();
                 }
 
                 LoadData();
@@ -392,12 +398,12 @@ namespace WpfApp3
                 using (var connection = new NpgsqlConnection("Host=localhost;Database=library;Username=postgres;Password=admin"))
                 {
                     connection.Open();
-                    string query = "UPDATE tabels SET returndate = @returndate WHERE bookid = @bookid AND personid = @personid";
+                    string query = "UPDATE tabels SET returndate = @returnDate WHERE bookid = @bookId AND personid = @personId";
                     using (var command = new NpgsqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@bookid", bookId);
-                        command.Parameters.AddWithValue("@personid", personId);
-                        command.Parameters.AddWithValue("@returndate", newReturnDate);
+                        command.Parameters.AddWithValue("@bookId", bookId);
+                        command.Parameters.AddWithValue("@personId", personId);
+                        command.Parameters.AddWithValue("@returnDate", newReturnDate);
                         int rowsAffected = command.ExecuteNonQuery();
 
                         if (rowsAffected > 0)
@@ -408,6 +414,7 @@ namespace WpfApp3
                         {
                             MessageBox.Show("Запись с указанными ID не найдена.");
                         }
+                        ClearInputFields();
                     }
                 }
 
@@ -441,11 +448,11 @@ namespace WpfApp3
                 using (var connection = new NpgsqlConnection("Host=localhost;Database=library;Username=postgres;Password=admin"))
                 {
                     connection.Open();
-                    string query = "DELETE FROM tabels WHERE bookid = @bookid AND personid = @personid";
+                    string query = "DELETE FROM tabels WHERE bookid = @bookId AND personid = @personId";
                     using (var command = new NpgsqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@bookid", bookId);
-                        command.Parameters.AddWithValue("@personid", personId);
+                        command.Parameters.AddWithValue("@bookId", bookId);
+                        command.Parameters.AddWithValue("@personId", personId);
                         int rowsAffected = command.ExecuteNonQuery();
 
                         if (rowsAffected > 0)
@@ -456,6 +463,7 @@ namespace WpfApp3
                         {
                             MessageBox.Show("Запись с указанными ID не найдена.");
                         }
+                        ClearInputFields();
                     }
                 }
 
@@ -470,6 +478,17 @@ namespace WpfApp3
         private void BooksDataGrid_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void ClearInputFields()
+        {
+            BookTitleTextBox1.Clear();
+            BookTitleTextBox2.Clear();
+            PersonIdTextBox.Clear();
+            PersonNameTextBox.Clear();
+            ReturnBookIdTextBox.Clear();
+            ReturnPersonIdTextBox.Clear();
+            ReturnDate.Clear();
         }
     }
 }

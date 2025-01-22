@@ -9,46 +9,64 @@
         <TabControl>
             <!-- Books Tab -->
             <TabItem Header="Книги">
-                <StackPanel>
-                    <TextBlock Text="Введите id книги" Foreground="Gray" Width="200" Margin="10"/>
-                    <TextBox x:Name="BookTitleTextBox1" Width="200" Margin="10"/>
-                    <TextBlock Text="Введите название книги" Foreground="Gray" Width="200" Margin="10"/>
-                    <TextBox x:Name="BookTitleTextBox2" Width="200" Margin="10"/>
-                    <Button Content="Добавить книгу" Click="AddBookButton_Click" Width="130" Margin="10"/>
-                    <Button Content="Изменить книгу по id" Click="UpdateBookButton_Click" Width="130" Margin="10"/>
-                    <Button Content="Удалить книгу" Click="DeleteBookButton_Click" Width="130" Margin="10"/>
-                    <DataGrid x:Name="BooksDataGrid" Width="500" Height="200" Margin="50"/>
-                </StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Margin="10">
+                        <TextBlock Text="Введите id книги" Foreground="Gray" Width="200" Margin="5"/>
+                        <TextBox x:Name="BookTitleTextBox1" Width="200" Margin="5"/>
+                        <TextBlock Text="Введите название книги" Foreground="Gray" Width="200" Margin="5"/>
+                        <TextBox x:Name="BookTitleTextBox2" Width="200" Margin="5"/>
+                        <Button Content="Добавить книгу" Click="AddBookButton_Click" Width="130" Margin="5"/>
+                        <Button Content="Изменить книгу по id" Click="UpdateBookButton_Click" Width="130" Margin="5"/>
+                        <Button Content="Удалить книгу" Click="DeleteBookButton_Click" Width="130" Margin="5"/>
+                    </StackPanel>
+                    <DataGrid x:Name="BooksDataGrid" Grid.Column="1" Width="500" Margin="10"/>
+                </Grid>
             </TabItem>
 
             <!-- Persons Tab -->
             <TabItem Header="Посетители">
-                <StackPanel>
-                    <TextBlock Text="Введите id человека" Foreground="Gray" Width="200" Margin="10"/>
-                    <TextBox x:Name="PersonIdTextBox" Width="200" Margin="10"/>
-                    <TextBlock Text="Введите ФИО" Foreground="Gray" Width="200" Margin="10"/>
-                    <TextBox x:Name="PersonNameTextBox" Width="200" Margin="10"/>
-                    <Button Content="Добавить человека" Click="AddPersonButton_Click" Width="130" Margin="10"/>
-                    <Button Content="Изменить человека" Click="UpdatePersonButton_Click" Width="130" Margin="10"/>                    
-                    <Button Content="Удалить человека" Click="DeletePersonButton_Click" Width="130" Margin="10"/>
-                    <DataGrid x:Name="PersonsDataGrid" Width="500" Height="200" Margin="10"/>
-                </StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Margin="10">
+                        <TextBlock Text="Введите id человека" Foreground="Gray" Width="200" Margin="5"/>
+                        <TextBox x:Name="PersonIdTextBox" Width="200" Margin="5"/>
+                        <TextBlock Text="Введите ФИО" Foreground="Gray" Width="200" Margin="5"/>
+                        <TextBox x:Name="PersonNameTextBox" Width="200" Margin="5"/>
+                        <Button Content="Добавить человека" Click="AddPersonButton_Click" Width="130" Margin="5"/>
+                        <Button Content="Изменить человека" Click="UpdatePersonButton_Click" Width="130" Margin="5"/>
+                        <Button Content="Удалить человека" Click="DeletePersonButton_Click" Width="130" Margin="5"/>
+                    </StackPanel>
+                    <DataGrid x:Name="PersonsDataGrid" Grid.Column="1" Width="500" Margin="10"/>
+                </Grid>
             </TabItem>
 
             <!-- Tabels Tab -->
             <TabItem Header="Табель">
-                <StackPanel>
-                    <TextBlock Text="Введите id книги" Foreground="Gray" Width="200" Margin="10"/>
-                    <TextBox x:Name="ReturnBookIdTextBox" Width="200" Margin="10"/>
-                    <TextBlock Text="Введите id человека" Foreground="Gray" Width="200" Margin="10"/>
-                    <TextBox x:Name="ReturnPersonIdTextBox" Width="200" Margin="10"/>
-                    <TextBlock Text="Введите дату возврата в формате дд.мм.гггг" Foreground="Gray" Width="250" Margin="10"/>
-                    <TextBox x:Name="ReturnDate" Width="200" Margin="10"/>
-                    <Button Content="Добавить запись" Click="AddTabelButton_Click" Width="100" Margin="10"/>
-                    <Button Content="Изменить запись" Click="UpdateTabelButton_Click" Width="100" Margin="10"/>
-                    <Button Content="Удалить запись" Click="DeleteTabelButton_Click" Width="100" Margin="10"/>
-                    <DataGrid x:Name="TabelDataGrid" Width="500" Height="200" Margin="10"/>
-                </StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Margin="10">
+                        <TextBlock Text="Введите id книги" Foreground="Gray" Width="200" Margin="5"/>
+                        <TextBox x:Name="ReturnBookIdTextBox" Width="200" Margin="5"/>
+                        <TextBlock Text="Введите id человека" Foreground="Gray" Width="200" Margin="5"/>
+                        <TextBox x:Name="ReturnPersonIdTextBox" Width="200" Margin="5"/>
+                        <TextBlock Text="Введите дату возврата в формате дд.мм.гггг" Foreground="Gray" Width="250" Margin="5"/>
+                        <TextBox x:Name="ReturnDate" Width="200" Margin="5"/>
+                        <Button Content="Добавить запись" Click="AddTabelButton_Click" Width="100" Margin="5"/>
+                        <Button Content="Изменить запись" Click="UpdateTabelButton_Click" Width="100" Margin="5"/>
+                        <Button Content="Удалить запись" Click="DeleteTabelButton_Click" Width="100" Margin="5"/>
+                    </StackPanel>
+                    <DataGrid x:Name="TabelDataGrid" Grid.Column="1" Width="500" Margin="10"/>
+                </Grid>
             </TabItem>
         </TabControl>
     </Grid>
